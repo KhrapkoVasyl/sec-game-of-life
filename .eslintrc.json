@@ -1,7 +1,8 @@
 {
   "env": {
     "node": true,
-    "es2022": true
+    "es2022": true,
+    "jest/globals": true
   },
   "extends": [
     "airbnb-base",
@@ -10,11 +11,26 @@
     "plugin:prettier/recommended",
     "plugin:sonarjs/recommended"
   ],
-  "plugins": ["prettier", "sonarjs"],
+  "plugins": ["prettier", "sonarjs", "jest"],
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module"
   },
+  "overrides": [
+    {
+      "files": ["test/**", "tests/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended", "plugin:jest/style"],
+      "rules": {
+        "jest/prefer-expect-assertions": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error"
+      }
+    }
+  ],
   "globals": {
     "BigInt": true
   },
